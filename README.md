@@ -1,15 +1,19 @@
 # Kew_WCoUP_ProcessoR
 
-March 2021
+Version 0.1.0 (March 2021, April 2022)
 
 Made possible by Idaho EPSCoR GEM3
 
+https://www.idahogem3.org/
+
 # License
-2021 © J. M. A. Wojahn, S. Buerki GNU General Public License v. 3
+© 2021 J. M. A. Wojahn, S. Buerki GNU General Public License v. 3
+
 https://www.gnu.org/licenses/gpl-3.0.en.html
 
 # What it does
 A function that extracts and sorts information from the Kew World Checklist of  Useful Plants, which is available only in PDF format.
+
 Output is a data.frame
 
 # Use
