@@ -30,7 +30,7 @@ source("Path/To/Kew_WCoUP_ProcessoR.R")
 KewWCoUP_Data <- Kew_WCoUP_ProcessoR(pathway = "Path/To/File.pdf", InstallDs = T)
 
 # How to cite this function
-Wojahn and Buerki (2021) Kew_WCoUP_ProcessoR: a function that extracts and sorts information from the Kew World Checklist of  Useful Plants, which is available only in PDF format. R function version 0.1.0. https://github.com/wojahn/Kew_WCoUP_ProcessoR
+John M. A. Wojahn and Sven Buerki (2021) Kew_WCoUP_ProcessoR: a function that extracts and sorts information from the Kew World Checklist of  Useful Plants, which is available only in PDF format. R function version 0.1.0. https://github.com/wojahn/Kew_WCoUP_ProcessoR
 
 # Dependancies
 This package depends on devtools and tabulizer.
