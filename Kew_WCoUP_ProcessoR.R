@@ -1,20 +1,34 @@
 #' Makes A Google Sheet Form To Translate Multiple Words Into 106 Languages
 #' @param pathway character: path to WCoUP PDF file
+#' @param InstallDs character: path to WCoUP PDF file
 #' @export
 # Written by John M. A. Wojahn March 2021
 # This is Free and Open-Source Software (F.O.S.S.)
 # © S. Buerki, J. M. A. Wojahn
-# Provided under the GNU AGPLv3 License
+# Provided under the GNU GPLv3 License
 # Funded by Idaho EPSCoR GEM3
 
-Kew_WCoUP_ProcessoR <- function(pathway)
+Kew_WCoUP_ProcessoR <- function(pathway,InstallDs)
 {
-  print("Reading in PDF")
+  if(InstallD == T)
+  {
+    message("Checking if dependancies are installed")
+    donez <- installed.packages()
+    if(!"devtools" %in% donez)
+    {
+      install.packages("devtools")
+    }
+    if(!"tabulizer" %in% donez)
+    {
+      devtools::install_github("ropensci/tabulizer")
+    }
+  }
+  message("Reading in PDF")
   WCoUS <- as.data.frame(tabulizer::extract_text(pathway))
   WCoUS <- as.data.frame(unlist(strsplit(WCoUS[1,1], split = "\n")))
   WCoUS <- as.data.frame(WCoUS[-(1:777),]) #remove introduction
   #remove page numbers
-  print("Removing page numbers")
+  message("Removing page numbers")
   pages <- as.vector(matrix(nrow=689, ncol = 1))
   for(i in 1:689)
   {
@@ -40,7 +54,7 @@ Kew_WCoUP_ProcessoR <- function(pathway)
   }
   gc()
   write.csv(WCoUS,"WCoUS_intermediate.csv", row.names = F)
-  print("Removing headers and footers")
+  message("Removing headers and footers")
   bad1 <- WCoUS[128,1]
   bad2 <- WCoUS[129,1]
   WCoUS <- as.data.frame(WCoUS[!WCoUS[,1] == bad1,])
@@ -55,7 +69,7 @@ Kew_WCoUP_ProcessoR <- function(pathway)
   }
   WCoUS <- as.data.frame(NWS)
   rm(NWS)
-  print("Extracting, cleaning, and sorting text")
+  message("Extracting, cleaning, and sorting text")
   WCoUS <- as.data.frame(WCoUS[-which(!grepl(" ",WCoUS[,1])),])
   Reformed <- as.data.frame(matrix(nrow=0,ncol=2))
   colnames(Reformed) <- c("Taxa", "Uses")
@@ -102,7 +116,7 @@ Kew_WCoUP_ProcessoR <- function(pathway)
     split <- as.data.frame(unlist(strsplit(Reformed[i,2], split = "\\|")))
     OUT[i,3] <- split[2,1]
   }
-  print("Replacing abbreviations with real uses")
+  message("Replacing abbreviations with real uses")
   abbrv <- c("AF","EU","FU","GS","HF","IF","MA","ME","PO","SU")
   real <- c("AnimalFood","EnvironmentalUses","Fuels","GeneSources","HumanFood","InvertebrateFood","Materials","Medicines","Poisons","SocialUses")
   pb <- txtProgressBar(min = 1, max = nrow(OUT), style = 3)
