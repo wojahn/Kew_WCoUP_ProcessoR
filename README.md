@@ -12,9 +12,9 @@ https://www.idahogem3.org/
 https://www.gnu.org/licenses/gpl-3.0.en.html
 
 # What it does
-A function that extracts and sorts information from the Kew World Checklist of  Useful Plants, which is available only in PDF format.
+A function that extracts and sorts information from the "Kew World Checklist of  Useful Plants", which is available only in PDF format.
 
-Output is a data.frame
+Output is a data.frame with three columns: "Species","Authority", and "Uses"
 
 # Use
 The function has two arguments: pathway, which is the reletive or full path to the Kew WCoUP PDF file, and InstallDs, which can be set to T if you need to install devtools and tabulizer, or F if you already have them installed.
